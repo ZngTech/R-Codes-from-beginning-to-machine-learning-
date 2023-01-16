@@ -1,0 +1,340 @@
+
+Basic Commands in R
+================================================================================================
+  Basic Multiplication
+  Scientific Notation
+  Basic Statistics: Mean, Mode(modeest package), Median, geometric mean ( to measure growth ability )
+  Index
+  Vectors 	              	  	
+  Matrice  numeric array of values		   	
+  Logical Operators: <   >   !
+  Data Frames: a data array that contains both numeric and categorical value
+  General Commands: dim  seq   length 
+  The sample Function: sample(x, size, replace = FALSE, prob = NULL)
+  
+================================================================================================
+
+> getwd()
+[1] "/Users/Data Science"
+># add parentheses to do multiplication
+> (2+3)*8
+[1] 40
+> # Exponentiation
+> 2^8
+[1] 256
+> # square root
+> 256^(1/2)
+[1] 16
+> # round a mixed number
+> round(37.685,1)
+[1] 37.7
+> # it means you round up the mixed number to the tenth place or 1 decimal place
+> # create a character variable
+> greetings="hello, how's it going"
+> greetings
+[1] "hello, how's it going"
+> # remember you cannot add numeric variable to character variable
+> # scientific notation 
+> 10e4
+[1] 1e+05
+> 2e3
+[1] 2000
+> # 2 times 10 to the 3
+> 2e4
+[1] 20000
+> 5e3
+[1] 5000
+> # get pi value
+> pi
+[1] 3.141593
+> # conduct log operation
+> log(3,base=10)
+[1] 0.4771213
+> log(5,base=3)
+[1] 1.464974
+> a=rnorm(50)
+> hist(a)
+> # use histogram function to plot distribution of the given dataset
+> # basic statistics computation using R
+> median(a)
+[1] -0.07822051
+> mean(a)
+[1] 0.01124449
+> # mean is sensitive to outliers but median is not
+> # get geometric mean
+> 
+> #to get the mode
+> install.packages("modeest")
+> # utilize the library command to wake up the library function
+> library(modeest)
+> b=c(5,5,6,6,7,7,6)
+> mfv(b)
+[1] 6
+> # Create a vector using concatenation function c()
+> x=c(36.8,25,39.5,29,30)
+> # multiply the vector
+> 5*x
+[1] 184.0 125.0 197.5 145.0 150.0
+> #addition of the vector
+> 10+x
+[1] 46.8 35.0 49.5 39.0 40.0
+> # get mean value
+> mean(x)
+[1] 32.06
+> # to get geometric mean of a set of value using prod and ^(1/n)
+> d=c(15,22,19)
+> prod(d)^(1/3)
+[1] 18.43978
+> # get standard deviation of the value x
+> sd(x)
+[1] 5.942895
+> sqrt(x)
+[1] 6.066300 5.000000 6.284903 5.385165 5.477226
+> sqrt(var(x))
+[1] 5.942895
+> # please note that sqrt(var()) is exactly the same as sd(), therefore, using sd( function is a lot better
+> # sample standard deviation is the square root of the sample variance
+> sampleVariance=sum((x-mean(x))^2)/(length(x)-1)
+> sampleVariance
+[1] 35.318
+> sqrt(sampleVariance)
+[1] 5.942895
+> # sample variance equation: sum((x-mean(x))^2)/(length(x)-1)
+> ######################## Index ####################################
+> # to view the second or third element of the vector x
+> x[2]
+[1] 36.8
+> x[3]
+[1] 39.5
+> # to generate a vector of integers 1 to 50
+> 1:50
+ [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20
+[21] 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40
+[41] 41 42 43 44 45 46 47 48 49 50
+> a=1:50
+> a
+ [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20
+[21] 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40
+[41] 41 42 43 44 45 46 47 48 49 50
+> # generate random values from the Z-distribution
+> # first of all define the length like length n=20. These are simulated values drawn from a Normal distribution with µ=0 and σ=1
+> Sim.Values=rnorm(20)
+> Sim.Values
+ [1]  0.46059066  0.57035013  0.61202494 -0.39594467  0.06414637
+ [6] -0.49704446  0.09845963 -0.88379185  1.19460117 -0.60485385
+[11]  0.80670370 -0.81026374 -0.11738037 -1.05680757 -0.43166562
+[16] -0.56754503 -1.70439008 -0.11326342 -1.34615209  1.30188654
+> Sim.Values
+ [1]  0.46059066  0.57035013  0.61202494 -0.39594467  0.06414637
+ [6] -0.49704446  0.09845963 -0.88379185  1.19460117 -0.60485385
+[11]  0.80670370 -0.81026374 -0.11738037 -1.05680757 -0.43166562
+[16] -0.56754503 -1.70439008 -0.11326342 -1.34615209  1.30188654
+> # for reproducible research purpose, we can set seed to ensure the next person who replicates the codes can get the same result
+> set.seed(178996)
+> # to get a matrix of randomly-generated value using rnorm 
+> rnorm(20)
+ [1]  0.46825230  0.63517569 -0.01451090 -0.84958475 -0.27239051
+ [6]  1.00586969  0.34806862  0.70442912 -0.20550128  0.40468140
+[11]  1.37546525  0.13572444  0.99929373  0.98894060  1.83391470
+[16] -0.44202590  0.12972123  0.09603649 -1.20823775  0.20560386
+> # Please name the variable utilize lowerCamel approach
+> # For example:  x= myData
+> ############################################################
+> # Matrices
+> # create a matrice
+> y = matrix (1:18,3,6)
+> y
+     [,1] [,2] [,3] [,4] [,5] [,6]
+[1,]    1    4    7   10   13   16
+[2,]    2    5    8   11   14   17
+[3,]    3    6    9   12   15   18
+> z=matrix(rnorm(36),6,6)
+> z
+           [,1]        [,2]        [,3]      [,4]       [,5]       [,6]
+[1,] -0.5109854  0.03246056  0.07768088 -0.142135  0.4590839  0.3043854
+[2,]  1.0085108  1.85180498 -0.71534117  1.470753  1.2387676 -0.4365289
+[3,] -0.2212849 -1.58055746  0.65720994 -1.192749 -0.5719081  1.0867668
+[4,] -0.9784459 -0.66933974 -0.25850923 -1.329548 -0.3065664  0.9143352
+[5,]  0.8022546 -0.08609922 -1.60289223 -1.320808  0.7501246 -0.7943761
+[6,] -1.0145180 -1.26825447  1.69230836  1.517799  1.6203166 -1.0565825
+> # to select a certain item in the matrix, or row, or column
+> z[3,5]
+[1] -0.5719081
+> z[3, ]
+[1] -0.2212849 -1.5805575  0.6572099 -1.1927489 -0.5719081  1.0867668
+> z[ ,3]
+[1]  0.07768088 -0.71534117  0.65720994 -0.25850923 -1.60289223  1.69230836
+> # calculate the column average
+> apply(z,2,mean)
+[1] -0.152411487 -0.286664227 -0.024923908 -0.166114522  0.531636392  0.002999989
+> apply(z,1,mean)
+[1]  0.0367484  0.7363278 -0.3037538 -0.4380124 -0.3752993  0.2485115
+> # the number "2" points to the column average whereas number "1" points to the row average
+> dim(z)
+[1] 6 6
+> # dim is used to get dimension
+> apply(y,2,mean)
+[1]  2  5  8 11 14 17
+> apply(y,1,mean)
+[1]  8.5  9.5 10.5
+> y<5
+     [,1]  [,2]  [,3]  [,4]  [,5]  [,6]
+[1,] TRUE  TRUE FALSE FALSE FALSE FALSE
+[2,] TRUE FALSE FALSE FALSE FALSE FALSE
+[3,] TRUE FALSE FALSE FALSE FALSE FALSE
+> y>5
+      [,1]  [,2] [,3] [,4] [,5] [,6]
+[1,] FALSE FALSE TRUE TRUE TRUE TRUE
+[2,] FALSE FALSE TRUE TRUE TRUE TRUE
+[3,] FALSE  TRUE TRUE TRUE TRUE TRUE
+> y[y<5]
+[1] 1 2 3 4
+> # return the values within the matrix y that carries numeric value smaller than 5
+> y[y>7]
+ [1]  8  9 10 11 12 13 14 15 16 17 18
+> #return the values within the matrix y that carries numeric value greater than 7
+> # y> 5 is the same as ! y<5
+> y>5
+      [,1]  [,2] [,3] [,4] [,5] [,6]
+[1,] FALSE FALSE TRUE TRUE TRUE TRUE
+[2,] FALSE FALSE TRUE TRUE TRUE TRUE
+[3,] FALSE  TRUE TRUE TRUE TRUE TRUE
+> !y<5
+      [,1]  [,2] [,3] [,4] [,5] [,6]
+[1,] FALSE FALSE TRUE TRUE TRUE TRUE
+[2,] FALSE  TRUE TRUE TRUE TRUE TRUE
+[3,] FALSE  TRUE TRUE TRUE TRUE TRUE
+> # y> 5 is not the same as ! y<5 because it excludes the possibility that a certain element can be 5
+> # ! y<5 means elements within y that is not smaller than 5
+> # Return a subset of value that satisfies a certain numeric condition
+> # y[!y<5]
+> y[!y<5]
+ [1]  5  6  7  8  9 10 11 12 13 14 15 16 17 18
+> # let's apply logical operation to randomly-generate variables
+> s=rnorm(30)
+> s
+ [1] -1.359747593 -1.010887774 -1.262018755  0.303879856 -0.604650426  0.706360545
+ [7]  0.003296651  0.783630644  0.044291666  0.452091322 -0.526597557 -1.679415029
+[13]  0.269918006 -1.804923560  0.442688138  0.103152048  0.133483520  0.304757498
+[19]  2.147854882  0.731245031  0.637270246 -0.331957577  0.884105234  0.758669735
+[25] -0.778444471  0.638945931  0.228010216 -1.678768241 -0.014193070  0.672203855
+> s<0
+ [1]  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE
+[15] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE
+[29]  TRUE FALSE
+> s[s<0]
+ [1] -1.35974759 -1.01088777 -1.26201875 -0.60465043 -0.52659756 -1.67941503 -1.80492356
+ [8] -0.33195758 -0.77844447 -1.67876824 -0.01419307
+> # re-create a sequence that satisfies a certain criteria
+> s[!s<0]
+ [1] 0.303879856 0.706360545 0.003296651 0.783630644 0.044291666 0.452091322 0.269918006
+ [8] 0.442688138 0.103152048 0.133483520 0.304757498 2.147854882 0.731245031 0.637270246
+[15] 0.884105234 0.758669735 0.638945931 0.228010216 0.672203855
+> # s[!s<0] returns the elements whose values not smaller than 0
+> length(s)
+[1] 30
+> z=sample(7,3)
+> z
+[1] 7 3 2
+> sample(z,3)
+[1] 3 2 7
+> sample(3)
+[1] 3 1 2
+> sample(y,3)
+[1] 14 13  7
+> sample(5)
+[1] 4 1 2 5 3
+> #The difference between subset () function and sample () is that, subset () is used to select data from the dataset which meets certain condition, while sample () is used for randomly selecting data of size 'n' from the dataset. This recipe demonstrates an example on subset () and sample () in R.
+> #sample(x, size, replace = FALSE, prob = NULL)
+> sample(y,10,FALSE)
+ [1]  4 17  9  3 10 18 13 11 15 14
+> sample(y,10,TRUE)
+ [1] 11 11 13  7  5 16  1  9  4  9
+> # "TRUE" allows element that has been randomly extracted to be replaced
+> # Working on data.frame
+> d=data.frame(z)
+> z
+[1] 7 3 2
+> d
+  z
+1 7
+2 3
+3 2
+> d=data.frame(y)
+> y
+     [,1] [,2] [,3] [,4] [,5] [,6]
+[1,]    1    4    7   10   13   16
+[2,]    2    5    8   11   14   17
+[3,]    3    6    9   12   15   18
+> d
+  X1 X2 X3 X4 X5 X6
+1  1  4  7 10 13 16
+2  2  5  8 11 14 17
+3  3  6  9 12 15 18
+> d=data.frame(d)
+> d
+  X1 X2 X3 X4 X5 X6
+1  1  4  7 10 13 16
+2  2  5  8 11 14 17
+3  3  6  9 12 15 18
+> d$x3
+NULL
+> d$X3
+[1] 7 8 9
+> d$X4
+[1] 10 11 12
+> d[,2]
+[1] 4 5 6
+> d[,3]
+[1] 7 8 9
+> 
+> e=data.frame(x)
+> e
+     x
+1 36.8
+2 25.0
+3 39.5
+4 29.0
+5 30.0
+> e$x
+[1] 36.8 25.0 39.5 29.0 30.0
+> head(iris)
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa
+6          5.4         3.9          1.7         0.4  setosa
+> iris[1:4, ]
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+># to see all variables you created in the R working directory
+> ls()
+ [1] "a"                         "d"                         "Dataset_Age_MonthlyIncome"
+ [4] "e"                         "education_income_anxiety"  "error_rate"               
+ [7] "fit.glm"                   "hsb2"                      "MyData"                   
+[10] "NBA"                       "pred.glm"                  "pred.probs"               
+[13] "Roomba"                    "s"                         "salary_anxiety_education" 
+[16] "samplevariance"            "Sim.Values"                "test"                     
+[19] "train"                     "x"                         "y"                        
+[22] "z"                        
+> # utilize "class" function to assess the variable type
+> str(iris)
+'data.frame':	150 obs. of  5 variables:
+ $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+ $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+ $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+ $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+ $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
+> # to remove certain variables
+> rm(Roomba)
+> rm(education_income_anxiety)
+> help(sample)
+starting httpd help server ... done
+> # help function to get clarification of the function you would like to look up
+
+
